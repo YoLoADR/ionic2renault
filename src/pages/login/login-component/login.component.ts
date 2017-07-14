@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { FirebaseHomeComponent } from '../../firebase/firebase-home/firebase-home.component';
+import { CreateAccountComponent } from './../../create-account/create-account-component/create-account.component';
+import { SignUpComponent } from './../../sign-up/sign-up-component/sign-up.component';
 
 @Component({
   templateUrl: './login.html'
@@ -29,7 +30,7 @@ export class LoginComponent {
       this.account.password
     ).then((value) => {
       loader.dismiss();
-      this.navController.pop(FirebaseHomeComponent);
+      this.navController.push(CreateAccountComponent);
     }).catch((error) => {
       loader.dismiss();
       let errorMessage = error;
@@ -43,5 +44,9 @@ export class LoginComponent {
         toast.present();
        }
     });
+  }
+
+  signUp() {
+    this.navController.push(SignUpComponent);
   }
 }
