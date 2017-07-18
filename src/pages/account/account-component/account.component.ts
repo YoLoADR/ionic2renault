@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
 
-import { NavController, ToastController } from 'ionic-angular';
+
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { Component } from '@angular/core';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Profile } from "../../../models/profile";
 //import { Profile } from './../../../models/profile';
 
 @Component({
@@ -12,21 +14,24 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class AccountComponent {
   auth: any;
   loading: boolean;
-  profileData: any
+  profileData: FirebaseObjectObservable<Profile>
 
   constructor(public navCtrl: NavController, 
     private angularFireAuth: AngularFireAuth,
     private angularFireDB: AngularFireDatabase,
-    private toast : ToastController) {
+    private toast : ToastController,
+    public navParams : NavParams) {
 
   }
 
   ngOnInit() {
+    this.IonViewWillLoad();
   }
 
   IonViewWillLoad() {
     this.angularFireAuth.authState.take(1).subscribe(data => {
-      if(data && data.email  & data.uid){
+      if(data){
+        console.log("data", data);
         this.toast.create({
           message: `Bienvenue, ${data.email}`,
           duration: 3000
