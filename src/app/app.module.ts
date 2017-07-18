@@ -1,6 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { SharedModule } from './shared/shared.module'
 import { HomeModule } from '../pages/home/home.module';
 import { TabsModule } from '../pages/tabs/tabs.module';
@@ -20,11 +23,24 @@ import { FacebookConnectModule } from '../pages/facebook-connect/facebook-connec
 import { LoginModule } from '../pages/login/login.module';
 import { BarcodeScannerModule } from '../pages/barcode-scanner/barcode-scanner.module';
 import { ChartsModule } from '../pages/charts/charts.module';
-import { FirebaseModule } from '../pages/firebase/firebase.module';
+//import { FirebaseModule } from '../pages/firebase/firebase.module';
+import { AccountModule } from '../pages/account/account.module';
+import { CreateAccountModule } from '../pages/create-account/create-account.module';
+import { ResetPasswordModule } from '../pages/reset-password/reset-password.module';
+import { SignUpModule } from '../pages/sign-up/sign-up.module';
 // Module Example: Use the PlaceholderModule for any new App Module
 import { PlaceholderModule } from '../pages/placeholder/placeholder.module';
 
 import { MyApp } from './app.component';
+
+var config = {
+    apiKey: "AIzaSyBYAP5g8BXUKWeLdmfoTJoxi4uAbNR1TzE",
+    authDomain: "ionicrenaultapp.firebaseapp.com",
+    databaseURL: "https://ionicrenaultapp.firebaseio.com",
+    projectId: "ionicrenaultapp",
+    storageBucket: "ionicrenaultapp.appspot.com",
+    messagingSenderId: "395294032878"
+  };
 
 @NgModule({
   declarations: [
@@ -32,6 +48,9 @@ import { MyApp } from './app.component';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     SharedModule,
     HomeModule,
     TabsModule,
@@ -51,8 +70,11 @@ import { MyApp } from './app.component';
     LoginModule,
     BarcodeScannerModule,
     ChartsModule,
-    FirebaseModule,
-    PlaceholderModule
+    PlaceholderModule,
+    AccountModule,
+    CreateAccountModule,
+    ResetPasswordModule,
+    SignUpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

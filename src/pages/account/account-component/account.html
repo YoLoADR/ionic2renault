@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-title>Mon compte</ion-title>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<p>Username : {{(profileData | async)?.username}}</p>
+  <p>Firstname : {{(profileData | async)?.firstName}}</p>
+  <p>Lastname : {{(profileData | async)?.lastName}}</p>
+  
+
+</ion-content>
